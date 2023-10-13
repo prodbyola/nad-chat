@@ -61,7 +61,7 @@ val chats = listOf(
         "Ok sir.",
         "04/05/23",
         R.drawable.a5
-    )
+    ),
 )
 
 @Composable

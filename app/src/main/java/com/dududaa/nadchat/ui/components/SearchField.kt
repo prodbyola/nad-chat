@@ -1,10 +1,7 @@
 package com.dududaa.nadchat.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
@@ -30,7 +27,7 @@ fun SearchField() {
         mutableStateOf("")
     }
 
-    val textColor = Color(0xFF3c3c43)
+    val textColor = Color(0x993c3c43)
 
     BasicTextField(
         value = "",
@@ -44,6 +41,7 @@ fun SearchField() {
                         shape = RoundedCornerShape(size = 10.dp)
                     )
                     .padding(horizontal = 6.dp)
+                    .height(36.dp)
             ) {
                 Icon(
                     Icons.Filled.Search,
@@ -55,6 +53,7 @@ fun SearchField() {
                     if(text.isEmpty()) Text(
                         text = "Search",
                         fontSize = 17.sp,
+                        lineHeight = 22.sp,
                         color = textColor,
                         fontFamily = ArchivoFont
                     )
