@@ -57,7 +57,6 @@ fun SearchField() {
                         color = textColor,
                         fontFamily = ArchivoFont
                     )
-
                     innerTextField()
                 }
             }

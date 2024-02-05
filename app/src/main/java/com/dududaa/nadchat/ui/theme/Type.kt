@@ -14,10 +14,14 @@ val ArchivoFont = FontFamily(
     Font(R.font.archivo_medium, FontWeight.Medium)
 )
 
+val ClashFont = FontFamily(
+    Font(R.font.clash_display)
+)
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = ArchivoFont,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
