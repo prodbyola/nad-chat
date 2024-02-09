@@ -41,7 +41,11 @@ sealed class Destinations(
 fun NadBottomBar(
     navController: NavController
 ) {
-    val screens = listOf(Destinations.Chats, Destinations.Contacts, Destinations.Profile)
+    val screens = listOf(
+        Destinations.Chats,
+        Destinations.Contacts,
+        Destinations.Profile
+    )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
