@@ -16,12 +16,10 @@ import androidx.compose.ui.unit.sp
 import com.dududaa.nadchat.R
 
 fun getIconName(icon: Int): String{
-    return if(icon == R.drawable.edit_icon){
-        "Edit"
-    } else if( icon == R.drawable.camera_icon){
-        "Camera"
-    } else {
-        "Person"
+    return when(icon) {
+        R.drawable.edit_icon -> "Edit"
+        R.drawable.camera_icon -> "Camera"
+        else -> "Person"
     }
 }
 
