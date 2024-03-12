@@ -21,7 +21,8 @@ enum class AppRoute {
 @Composable
 fun NavigationGraph(
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
+    iconClicked: String
 ) {
     Box(modifier = modifier){
         NavHost(
@@ -37,11 +38,11 @@ fun NavigationGraph(
             }
 
             composable(route = AppRoute.Contacts.name){
-                ContactsScreen()
+                ContactsScreen(iconClicked)
             }
 
             composable(route = AppRoute.Profile.name){
-                ProfileScreen()
+                ProfileScreen(iconClicked)
             }
         }
     }

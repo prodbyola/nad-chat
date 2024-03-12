@@ -1,5 +1,6 @@
 package com.dududaa.nadchat.ui.screens
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -9,14 +10,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun ProfileScreen(){
+fun ProfileScreen(
+    iconClicked: String
+){
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Profile Screen Here", color = Color.Black)
+        Column {
+            Text(text = "Profile Screen Here", color = Color.Black)
+            Text(text = "Icon clicked is $iconClicked")
+        }
     }
 }
 
 @Composable
 @Preview(showBackground = true)
 fun ProfileScreenPreview(){
-    ProfileScreen()
+    ProfileScreen(iconClicked = "Edit")
 }
