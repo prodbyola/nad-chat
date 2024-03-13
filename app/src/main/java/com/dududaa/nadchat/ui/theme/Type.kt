@@ -14,8 +14,9 @@ val ArchivoFont = FontFamily(
     Font(R.font.archivo_medium, FontWeight.Medium)
 )
 
-val ClashFont = FontFamily(
-    Font(R.font.clash_display)
+val ClashDisplayFont = FontFamily(
+    Font(R.font.clash_display),
+    Font(R.font.clash_display_semibold, FontWeight.SemiBold)
 )
 
 // Set of Material typography styles to start with
