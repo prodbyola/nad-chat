@@ -1,4 +1,4 @@
-package com.dududaa.nadchat.ui.screens
+package com.dududaa.nadchat.ui.screens.registration
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
@@ -44,19 +44,19 @@ import com.dududaa.nadchat.ui.components.common.NadModal
 import com.dududaa.nadchat.ui.theme.ArchivoFont
 import com.dududaa.nadchat.ui.theme.ClashDisplayFont
 
-private sealed class OnboardInfo(val img: Int, val title: String) {
+private sealed class OnboardInfo(val imgPath: Int, val title: String) {
     object One : OnboardInfo(
-        img = R.drawable.ob_lock,
+        imgPath = R.drawable.ob_lock,
         title = "Private & secure",
     )
 
     object Two : OnboardInfo(
-        img = R.drawable.ob_img,
+        imgPath = R.drawable.ob_img,
         title = "Share with comfort",
     )
 
     object Three : OnboardInfo(
-        img = R.drawable.ob_chat,
+        imgPath = R.drawable.ob_chat,
         title = "Messages erased",
     )
 
@@ -106,9 +106,9 @@ private fun OnboardInfo.next(): OnboardInfo? {
 }
 
 @Composable
-private fun OnboardComponent(data: OnboardInfo) {
+private fun OnboardComponent(info: OnboardInfo) {
     val size = 125
-    val imgHeight = if (data == OnboardInfo.Three) 125 else 100
+    val imgHeight = if (info == OnboardInfo.Three) 125 else 100
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -116,7 +116,7 @@ private fun OnboardComponent(data: OnboardInfo) {
     ) {
         Box(modifier = Modifier.size(size.dp)) {
             Image(
-                painter = painterResource(id = data.img),
+                painter = painterResource(id = info.imgPath),
                 contentDescription = null,
                 modifier = Modifier
                     .height(imgHeight.dp)
@@ -127,7 +127,7 @@ private fun OnboardComponent(data: OnboardInfo) {
         Spacer(modifier = Modifier.height(84.dp))
 
         Text(
-            text = data.title,
+            text = info.title,
             fontFamily = ClashDisplayFont,
             fontSize = 48.sp,
             fontWeight = FontWeight.SemiBold,
@@ -137,7 +137,7 @@ private fun OnboardComponent(data: OnboardInfo) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Text(text = data.sub(), fontFamily = ArchivoFont, fontSize = 16.sp)
+        Text(text = info.sub(), fontFamily = ArchivoFont, fontSize = 16.sp)
     }
 
 }
@@ -166,7 +166,8 @@ private fun ProgressComponent(currentInfo: OnboardInfo) {
 @Composable
 fun OnboardScreen(onDone: () -> Unit) {
     NadModal(
-        onDismiss = onDone, modifier = Modifier
+        onDismiss = onDone,
+        modifier = Modifier
             .fillMaxSize()
             .paint(
                 painter = painterResource(id = R.drawable.bg_pattern),
@@ -196,7 +197,7 @@ fun OnboardScreen(onDone: () -> Unit) {
                 enter = slideInHorizontally { -40 },
                 exit = slideOutHorizontally()
             ) {
-                OnboardComponent(data = currentInfo)
+                OnboardComponent(info = currentInfo)
             }
             Spacer(modifier = Modifier.height(16.dp))
             ProgressComponent(currentInfo)

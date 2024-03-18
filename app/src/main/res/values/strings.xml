@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NAD Chat</string>
+    <string name="whats_your_phone">What’s your phone number?</string>
+    <string name="confirm_country_code">Please confirm your country code and enter your phone number.</string>
+    <string name="_continue">Continue</string>
+    <string name="enter_phone">enter phone number</string>
 </resources>
