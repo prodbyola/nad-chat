@@ -14,7 +14,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.dududaa.nadchat.ui.components.layout.NadBottomBar
 import com.dududaa.nadchat.ui.components.layout.NadTopBar
-import com.dududaa.nadchat.ui.screens.OnboardScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,10 +25,6 @@ fun NadChatApp() {
 
     var iconClicked by remember {
         mutableStateOf("")
-    }
-
-    var showOnboard by remember {
-        mutableStateOf(true)
     }
 
     Scaffold(
@@ -52,12 +47,6 @@ fun NadChatApp() {
             modifier = Modifier.padding(it),
             iconClicked = iconClicked
         )
-    }
-
-    if(showOnboard){
-        OnboardScreen {
-            showOnboard = false
-        }
     }
 }
 

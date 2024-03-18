@@ -1,4 +1,4 @@
-package com.dududaa.nadchat.ui.screens
+package com.dududaa.nadchat.ui.screens.registration
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
@@ -44,19 +44,19 @@ import com.dududaa.nadchat.ui.components.common.NadModal
 import com.dududaa.nadchat.ui.theme.ArchivoFont
 import com.dududaa.nadchat.ui.theme.ClashDisplayFont
 
-private sealed class OnboardInfo(val img: Int, val title: String) {
+private sealed class OnboardInfo(val imgPath: Int, val title: String) {
     object One : OnboardInfo(
-        img = R.drawable.ob_lock,
+        imgPath = R.drawable.ob_lock,
         title = "Private & secure",
     )
 
     object Two : OnboardInfo(
-        img = R.drawable.ob_img,
+        imgPath = R.drawable.ob_img,
         title = "Share with comfort",
     )
 
     object Three : OnboardInfo(
-        img = R.drawable.ob_chat,
+        imgPath = R.drawable.ob_chat,
         title = "Messages erased",
     )
 
@@ -107,20 +107,20 @@ private fun OnboardInfo.next(): OnboardInfo? {
 
 @Composable
 private fun OnboardComponent(info: OnboardInfo) {
-    val imgWidth = 125
+    val size = 125
     val imgHeight = if (info == OnboardInfo.Three) 125 else 100
 
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(modifier = Modifier.size(imgWidth.dp)) {
+        Box(modifier = Modifier.size(size.dp)) {
             Image(
-                painter = painterResource(id = info.img),
+                painter = painterResource(id = info.imgPath),
                 contentDescription = null,
                 modifier = Modifier
                     .height(imgHeight.dp)
-                    .width(imgWidth.dp)
+                    .width(size.dp)
             )
         }
 
@@ -166,7 +166,8 @@ private fun ProgressComponent(currentInfo: OnboardInfo) {
 @Composable
 fun OnboardScreen(onDone: () -> Unit) {
     NadModal(
-        onDismiss = onDone, modifier = Modifier
+        onDismiss = onDone,
+        modifier = Modifier
             .fillMaxSize()
             .paint(
                 painter = painterResource(id = R.drawable.bg_pattern),
