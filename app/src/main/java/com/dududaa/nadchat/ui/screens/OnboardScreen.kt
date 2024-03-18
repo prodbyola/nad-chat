@@ -106,28 +106,28 @@ private fun OnboardInfo.next(): OnboardInfo? {
 }
 
 @Composable
-private fun OnboardComponent(data: OnboardInfo) {
-    val size = 125
-    val imgHeight = if (data == OnboardInfo.Three) 125 else 100
+private fun OnboardComponent(info: OnboardInfo) {
+    val imgWidth = 125
+    val imgHeight = if (info == OnboardInfo.Three) 125 else 100
 
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(modifier = Modifier.size(size.dp)) {
+        Box(modifier = Modifier.size(imgWidth.dp)) {
             Image(
-                painter = painterResource(id = data.img),
+                painter = painterResource(id = info.img),
                 contentDescription = null,
                 modifier = Modifier
                     .height(imgHeight.dp)
-                    .width(size.dp)
+                    .width(imgWidth.dp)
             )
         }
 
         Spacer(modifier = Modifier.height(84.dp))
 
         Text(
-            text = data.title,
+            text = info.title,
             fontFamily = ClashDisplayFont,
             fontSize = 48.sp,
             fontWeight = FontWeight.SemiBold,
@@ -137,7 +137,7 @@ private fun OnboardComponent(data: OnboardInfo) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Text(text = data.sub(), fontFamily = ArchivoFont, fontSize = 16.sp)
+        Text(text = info.sub(), fontFamily = ArchivoFont, fontSize = 16.sp)
     }
 
 }
@@ -196,7 +196,7 @@ fun OnboardScreen(onDone: () -> Unit) {
                 enter = slideInHorizontally { -40 },
                 exit = slideOutHorizontally()
             ) {
-                OnboardComponent(data = currentInfo)
+                OnboardComponent(info = currentInfo)
             }
             Spacer(modifier = Modifier.height(16.dp))
             ProgressComponent(currentInfo)
