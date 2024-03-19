@@ -10,12 +10,14 @@ import com.dududaa.nadchat.ui.screens.ChatListScreen
 import com.dududaa.nadchat.ui.screens.ChatRoomScreen
 import com.dududaa.nadchat.ui.screens.ContactsScreen
 import com.dududaa.nadchat.ui.screens.ProfileScreen
+import com.dududaa.nadchat.ui.screens.registration.AddPhoneScreen
 
 enum class AppRoute {
     RecentChats,
     ChatRoom,
     Contacts,
     Profile,
+    RegAddPhone,
 }
 
 @Composable
@@ -27,8 +29,12 @@ fun NavigationGraph(
     Box(modifier = modifier){
         NavHost(
             navController = navController,
-            startDestination = AppRoute.RecentChats.name
+            startDestination = AppRoute.RegAddPhone.name
         ) {
+            composable(route = AppRoute.RegAddPhone.name){
+                AddPhoneScreen()
+            }
+
             composable(route = AppRoute.RecentChats.name) {
                 ChatListScreen()
             }
