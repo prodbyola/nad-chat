@@ -1,4 +1,7 @@
 package com.dududaa.nadchat
 
-class AppBase {
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class AppBase: Application() {}
