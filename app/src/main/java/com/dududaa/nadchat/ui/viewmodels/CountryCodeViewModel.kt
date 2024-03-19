@@ -17,14 +17,17 @@ import javax.inject.Inject
 @HiltViewModel
 class CountryCodeViewModel @Inject constructor(private val apiService: ApiService) : ViewModel() {
     private val _codes = MutableLiveData<ApiState<List<CountryCode>>>(ApiState.Loading)
+    private val _isLoaded = mutableStateOf(false)
 
-    val codes: LiveData<ApiState<List<CountryCode>>> = _codes
+    val codes: LiveData<ApiState<List<CountryCode>>> get() = _codes
+    val isLoaded get() = _isLoaded.value
 
     fun loadCodes(){
         viewModelScope.launch {
             try {
                 val resp = apiService.getCountryCodes()
                 _codes.value = ApiState.Success(resp)
+                _isLoaded.value = true
             } catch (e: Exception) {
                 _codes.value = ApiState.Error(e.message.toString())
             }

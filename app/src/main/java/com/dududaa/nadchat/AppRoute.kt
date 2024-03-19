@@ -20,7 +20,31 @@ enum class AppRoute {
     ChatRoom,
     Contacts,
     Profile,
-    RegAddPhone,
+    RegAddPhone;
+
+    companion object {
+        fun fromName(name: String?): AppRoute? {
+            val l = AppRoute.values()
+
+            return l.find { it.name == name }
+        }
+    }
+}
+
+fun AppRoute.showTitle(): Boolean {
+    return this != AppRoute.RegAddPhone
+}
+
+fun AppRoute.showBottomNav(): Boolean {
+    return this != AppRoute.RegAddPhone
+}
+
+fun AppRoute.icons(): List<Int>? {
+    if(this == AppRoute.RecentChats){
+        return listOf(R.drawable.camera_icon, R.drawable.edit_icon)
+    }
+
+    return null
 }
 
 @Composable
@@ -30,7 +54,7 @@ fun NavigationGraph(
     iconClicked: String,
     codesViewModel: CountryCodeViewModel
 ) {
-    Box(modifier = modifier.padding(horizontal = 24.dp)){
+    Box(modifier = modifier.padding(24.dp)){
         NavHost(
             navController = navController,
             startDestination = AppRoute.RegAddPhone.name

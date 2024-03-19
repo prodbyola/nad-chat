@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,25 +21,25 @@ fun NadChatApp(codesViewModel: CountryCodeViewModel = viewModel()) {
     val navController = rememberNavController()
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+    val route = navBackStackEntry?.destination?.route
+    val currentRoute = AppRoute.fromName(route)
 
-    var iconClicked by remember {
+    val iconClicked by remember {
         mutableStateOf("")
     }
 
     Scaffold(
         topBar = {
-            NadTopBar(
-                route = currentRoute,
-                onIconClicked = { icon ->
-                    iconClicked = icon
-                }
-            )
+            NadTopBar(navController)
         },
         bottomBar = {
-            NadBottomBar(
-                navController = navController
-            )
+            if (currentRoute != null) {
+                if(currentRoute.showBottomNav()){
+                    NadBottomBar(
+                        navController = navController
+                    )
+                }
+            }
         }
     ) {
         NavigationGraph(
